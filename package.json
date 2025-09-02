@@ -1,0 +1,19 @@
+{
+  "name": "api-rest-js-movie",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoAndrey/api-rest-js-movie.git"
+  },
+  "author": "Marco_Andrey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcoAndrey/api-rest-js-movie/issues"
+  },
+  "homepage": "https://github.com/MarcoAndrey/api-rest-js-movie#readme",
+  "description": ""
+}
