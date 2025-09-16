@@ -69,6 +69,7 @@ const api = axios.create({
 // }
 
 // Img movies axios
+
 async function getTrendingMoviesPreview() {
   const { data } = await api("trending/movie/day");
   const movies = data.results;
@@ -118,6 +119,3 @@ async function getCategoriesPreview() {
     PreviewCategoriesContainer.appendChild(categoryContainer);
   });
 }
-
-getTrendingMoviesPreview();
-getCategoriesPreview();
