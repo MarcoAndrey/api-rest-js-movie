@@ -1,5 +1,5 @@
 searchFormBtn.addEventListener("click", (e) => {
-  location.hash = "#search=";
+  location.hash = "#search=" + searchFormInput.value;
 });
 
 trendingBtn.addEventListener("click", (e) => {
@@ -7,7 +7,7 @@ trendingBtn.addEventListener("click", (e) => {
 });
 
 arrowBtn.addEventListener("click", (e) => {
-  location.hash = "#home";
+  history.back(); // Regresa a la página anterior
 });
 
 window.addEventListener("DOMContentLoaded", navigator, false);
@@ -21,12 +21,15 @@ function navigator() {
   } else if (location.hash.startsWith("#search=")) {
     searchPage();
   } else if (location.hash.startsWith("#movie=")) {
-    moviePage();
+    movieDetaisPage();
   } else if (location.hash.startsWith("#category=")) {
     categoriesPage();
   } else {
     homePage();
   }
+
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 
 function homePage() {
@@ -76,7 +79,7 @@ function categoriesPage() {
   getMoviesByCategory(categoryId);
 }
 
-function moviePage() {
+function movieDetaisPage() {
   console.log("MOVIE");
 
   headerSection.classList.add("header-container--long");
@@ -91,6 +94,11 @@ function moviePage() {
   categoriesPreviewSection.classList.add("inactive");
   genericSection.classList.add("inactive");
   movieDetailSection.classList.remove("inactive");
+
+  // location.hash.split("="); ["#movie", "id de la pelicula 22334499"]
+  const [_, movieId] = location.hash.split("=");
+
+  getMovieById(movieId);
 }
 
 function searchPage() {
@@ -101,13 +109,18 @@ function searchPage() {
   arrowBtn.classList.remove("inactive");
   arrowBtn.classList.remove("header-arrow--white");
   headerTitle.classList.add("inactive");
-  headerCategoryTitle.classList.remove("inactive");
+  headerCategoryTitle.classList.add("inactive");
   searchForm.classList.remove("inactive");
 
   trendingPreviewSection.classList.add("inactive");
   categoriesPreviewSection.classList.add("inactive");
   genericSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");
+
+  // location.hash.split("="); ["#search", "loque allan buscado"]
+  const [_, query] = location.hash.split("=");
+
+  getMoviesBySearch(query);
 }
 
 function trendsPage() {
@@ -125,4 +138,8 @@ function trendsPage() {
   categoriesPreviewSection.classList.add("inactive");
   genericSection.classList.remove("inactive");
   movieDetailSection.classList.add("inactive");
+
+  headerCategoryTitle.innerHTML = "Tendencias";
+
+  getTrendingMovies();
 }
